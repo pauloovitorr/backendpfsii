@@ -16,9 +16,9 @@ export default class Professor{
     get codigo(){
         return this.#codigo
     }
-
+ 
     set codigo(c){
-        this.codigo = c
+        this.#codigo = c
     }
 
     get nome(){

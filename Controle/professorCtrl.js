@@ -4,6 +4,7 @@ export default class ProfessorCtrl{
     gravar(req,res){
         res.type('application/json')
         if(req.method === 'POST' && req.is('application/json')){
+
             const dados = req.body
             const nome = dados.nome
             const email = dados.email
@@ -15,15 +16,15 @@ export default class ProfessorCtrl{
                 .then(()=>{
                     res.status(200).json({
                         "status": true,
-                        "codigoGerado": produto.codigo,
-                        "mensagem": "Produto incluído com sucesso!"
+                        "codigoGerado": professor.codigo,
+                        "mensagem": "Professor incluído com sucesso!"
                     })
                 })
 
                 .catch((erro)=>{
                     res.status(500).json({
                         "status": false,
-                        "mensagem": "Erro ao registrar o produto:" + erro.message
+                        "mensagem": "Erro ao registrar professor:" + erro.message
                     })
                 })
             }
