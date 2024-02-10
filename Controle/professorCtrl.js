@@ -31,4 +31,34 @@ export default class ProfessorCtrl{
         }
     }
 
+    atualizar(req,res){
+        res.type('application/json')
+        if(req.method === 'PUT' && req.is('application/json')){
+            const dados = req.body
+            const codigo = dados.codigo
+            const nome = dados.nome
+            const email = dados.email
+            const telefone = dados.telefone
+
+            if(nome && email && telefone){
+                
+                const professor = new Professor(codigo,nome,email,telefone)
+                professor.atualizar()
+                .then(()=>{
+                    res.status(200).json({
+                        "status": true,
+                        "mensagem": "Professor atualizado com sucesso!"
+                    })
+                })
+                .catch((erro)=>{
+                    res.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao atualizar a professor:" + erro.message
+                    });
+                })
+
+            }
+        }
+    }
+
 }

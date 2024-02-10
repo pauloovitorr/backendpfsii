@@ -14,4 +14,17 @@ export default class ProfessorDAO{
             global.poolConexoes.releaseConnection(conexao);
         }
     }
+
+    async atualizar(professor){
+        if(professor instanceof Professor){
+            const sql = 'UPDATE professor SET nome = ?, email = ?, telefone = ? WHERE codigo = ?'
+            const parametros = [professor.nome, professor.email, professor.telefone, professor.codigo]
+
+            
+            
+            const conexao = await conectar()
+            await conexao.execute(sql, parametros)
+            global.poolConexoes.releaseConnection(conexao)
+        }
+    }
 }

@@ -8,6 +8,7 @@ const professor = new ProfessorCtrl()
 rota_professor
 
 .post('/', professor.gravar)
+.put('/', professor.atualizar)
 
 
 export default rota_professor

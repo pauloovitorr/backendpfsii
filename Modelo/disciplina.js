@@ -16,7 +16,7 @@ export default class Disciplina{
     }
 
     set codigo(c){
-        this.codigo = c
+        this.#codigo = c
     }
 
     get nome_disciplina(){

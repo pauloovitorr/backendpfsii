@@ -59,4 +59,8 @@ export default class Professor{
         await proDAO.gravar(this)
     }
 
+    async atualizar(){
+        const proDAO = new ProfessorDAO()
+        await proDAO.atualizar(this)
+    }
 }
