@@ -19,11 +19,45 @@ export default class ProfessorDAO{
         if(professor instanceof Professor){
             const sql = 'UPDATE professor SET nome = ?, email = ?, telefone = ? WHERE codigo = ?'
             const parametros = [professor.nome, professor.email, professor.telefone, professor.codigo]
-
-            
-            
             const conexao = await conectar()
             await conexao.execute(sql, parametros)
+            global.poolConexoes.releaseConnection(conexao)
+        }
+    }
+    async buscar(consulta) {
+        let sql = '';
+        let parametros = [];
+    
+        if (!isNaN(parseInt(consulta))) {
+            sql = 'SELECT * FROM professor WHERE codigo = ?';
+            parametros = [consulta];
+        } else {
+            if (!consulta) {
+                consulta = '';
+            }
+            sql = 'SELECT * FROM professor WHERE nome like ?';
+            parametros = ['%' + consulta + '%'];
+        }
+    
+        const conexao = await conectar();
+        const [registros] = await conexao.execute(sql, parametros);
+        let listaProfessores = [];
+    
+        for (const registro of registros) {
+            const professor = new Professor(registro.codigo, registro.nome, registro.email, registro.telefone);
+            listaProfessores.push(professor);
+        }
+    
+        return listaProfessores
+    }
+
+    async excluir(professor){
+        if (professor instanceof Professor){
+            const sql = "DELETE FROM professor WHERE codigo = ?"
+
+            const parametros = [professor.codigo]
+            const conexao = await conectar()
+            await conexao.execute(sql,parametros)
             global.poolConexoes.releaseConnection(conexao)
         }
     }

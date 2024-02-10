@@ -63,4 +63,14 @@ export default class Professor{
         const proDAO = new ProfessorDAO()
         await proDAO.atualizar(this)
     }
+
+    async buscar(parametro){
+        const proDAO = new ProfessorDAO
+        return await proDAO.buscar(parametro)
+    }
+
+    async excluir(){
+        const proDAO = new ProfessorDAO
+        await proDAO.excluir(this)
+    }
 }
