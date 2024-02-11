@@ -40,7 +40,7 @@ export default class ProfessorCtrl {
             const email = dados.email
             const telefone = dados.telefone
 
-            if (nome && email && telefone) {
+            if (codigo && nome && email && telefone) {
 
                 const professor = new Professor(codigo, nome, email, telefone)
                 professor.atualizar()
