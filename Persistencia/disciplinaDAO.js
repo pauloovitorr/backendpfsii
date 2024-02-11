@@ -60,14 +60,16 @@ export default class DisciplinaDAO{
         
     }
 
-    // async excluir(professor){
-    //     if (professor instanceof Professor){
-    //         const sql = "DELETE FROM professor WHERE codigo = ?"
+    async excluir(disciplina){
+        if (disciplina instanceof Disciplina){
+            const sql = "DELETE FROM disciplina WHERE codigo = ?"
 
-    //         const parametros = [professor.codigo]
-    //         const conexao = await conectar()
-    //         await conexao.execute(sql,parametros)
-    //         global.poolConexoes.releaseConnection(conexao)
-    //     }
-    // }
+            const parametros = [disciplina.codigo]
+
+            
+            const conexao = await conectar()
+            await conexao.execute(sql,parametros)
+            global.poolConexoes.releaseConnection(conexao)
+        }
+    }
 }

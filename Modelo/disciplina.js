@@ -80,4 +80,9 @@ export default class Disciplina{
         return await disDAO.buscar(termo)
      }
 
+     async excluir(){
+        const disDAO = new DisciplinaDAO()
+        await disDAO.excluir(this)
+     }
+
 }

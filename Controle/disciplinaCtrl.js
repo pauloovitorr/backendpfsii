@@ -93,40 +93,40 @@ export default class DisciplinaCtrl {
         }
     }
 
-    // excluir(req, res) {
-    //     res.type('application/json');
-    //     if (req.method === 'DELETE' && req.is('application/json')) {
-    //         const dados = req.body;
-    //         const codigo = dados.codigo;
+    excluir(req, res) {
+        res.type('application/json');
+        if (req.method === 'DELETE' && req.is('application/json')) {
+            const dados = req.body;
+            const codigo = dados.codigo;
 
-    //         if (codigo) {
-    //             const professor = new Professor(codigo);
-    //             professor.excluir().then(() => {
-    //                 res.status(200).json({
-    //                     "status": true,
-    //                     "mensagem": "Professor excluído com sucesso!"
-    //                 });
-    //             })
-    //                 .catch((erro) => {
-    //                     res.status(500).json({
-    //                         "status": false,
-    //                         "mensagem": "Erro ao excluir o professor:" + erro.message
-    //                     });
-    //                 });
-    //         }
-    //         else {
-    //             res.status(400).json({
-    //                 "status": false,
-    //                 "mensagem": "Informe o código do professor!"
-    //             });
-    //         }
-    //     }
-    //     else {
-    //         res.status(400).json({
-    //             "status": false,
-    //             "mensagem": "Utilize o método DELETE para excluir um professor!"
-    //         });
-    //     }
-    // }
+            if (codigo) {
+                const disciplina = new Disciplina(codigo);
+                disciplina.excluir().then(() => {
+                    res.status(200).json({
+                        "status": true,
+                        "mensagem": "Disciplina excluída com sucesso!"
+                    });
+                })
+                    .catch((erro) => {
+                        res.status(500).json({
+                            "status": false,
+                            "mensagem": "Erro ao excluir o disciplina:" + erro.message
+                        });
+                    });
+            }
+            else {
+                res.status(400).json({
+                    "status": false,
+                    "mensagem": "Informe o código do disciplina!"
+                });
+            }
+        }
+        else {
+            res.status(400).json({
+                "status": false,
+                "mensagem": "Utilize o método DELETE para excluir uma disciplina!"
+            });
+        }
+    }
 
 }

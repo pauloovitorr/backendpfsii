@@ -9,6 +9,7 @@ rota_disciplina
 .put('/', disciplinaCtrl.atualizar)
 .get('/', disciplinaCtrl.buscar)
 .get('/:termo', disciplinaCtrl.buscar)
+.delete('/', disciplinaCtrl.excluir)
 
 
 export default rota_disciplina
