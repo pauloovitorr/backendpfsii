@@ -6,7 +6,8 @@ export default class DisciplinaDAO{
     async gravar(disciplina){
         if(disciplina instanceof Disciplina){
             const sql = 'INSERT INTO disciplina (nome_disciplina,inicio,termino, codigo_professor) VALUES (?,?,?,?)'
-            const parametros = [disciplina.nome_disciplina, disciplina.inicio, disciplina.termino, disciplina.codigo_professor]
+            const parametros = [disciplina.nome_disciplina, disciplina.inicio, disciplina.termino, disciplina.professor]
+
             const conexao = await conectar()
             const  retorno = await conexao.execute(sql, parametros)
             
@@ -19,7 +20,7 @@ export default class DisciplinaDAO{
     async atualizar(disciplina){
         if(disciplina instanceof Disciplina){
             const sql = 'UPDATE disciplina SET nome_disciplina = ?, inicio = ?, termino = ?, codigo_professor = ? WHERE codigo = ?'
-            const parametros = [disciplina.nome_disciplina, disciplina.inicio, disciplina.termino, disciplina.codigo_professor, disciplina.codigo]
+            const parametros = [disciplina.nome_disciplina, disciplina.inicio, disciplina.termino, disciplina.professor, disciplina.codigo]
             
             const conexao = await conectar()
             await conexao.execute(sql, parametros)
@@ -49,7 +50,8 @@ export default class DisciplinaDAO{
         let listaDisciplina = [];
     
         for (const disc of disciplinas) {
-            const professor = new Professor(disc.codigo_professor, disc.nome, disc.email, disc.telefone)
+            
+            const professor = new Professor(disc.nome, disc.email, disc.telefone)
             const disciplina = new Disciplina(disc.codigo, disc.nome_disciplina, disc.inicio, disc.termino, professor);
             listaDisciplina.push(disciplina);
         }
