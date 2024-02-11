@@ -67,12 +67,12 @@ export default class Disciplina{
 
     async gravar(){
         const disDAO = new DisciplinaDAO()
-        disDAO.gravar(this)
+        await disDAO.gravar(this)
     }
 
     async atualizar(){
         const disDAO = new DisciplinaDAO()
-        disDAO.atualizar(this)
+        await disDAO.atualizar(this)
     }
 
 }

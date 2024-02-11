@@ -20,14 +20,10 @@ export default class DisciplinaDAO{
             const sql = 'UPDATE disciplina SET nome_disciplina = ?, inicio = ?, termino = ?, codigo_professor = ? WHERE codigo = ?'
             const parametros = [disciplina.nome_disciplina, disciplina.inicio, disciplina.termino, disciplina.codigo_professor, disciplina.codigo]
             
-            try{
-                const conexao = await conectar()
-                await conexao.execute(sql, parametros)
-                global.poolConexoes.releaseConnection(conexao)
-            }
-            catch (erro){
-               throw erro
-            }
+            const conexao = await conectar()
+            await conexao.execute(sql, parametros)
+            global.poolConexoes.releaseConnection(conexao)
+
         }
     }
 
