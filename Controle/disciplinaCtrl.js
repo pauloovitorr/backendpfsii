@@ -64,34 +64,34 @@ export default class DisciplinaCtrl {
         }
     }
 
-    // buscar(req, res) {
-    //     res.type('application/json');
-    //     let termo = req.params.termo;
+    buscar(req, res) {
+        res.type('application/json');
+        let termo = req.params.termo;
 
-    //     if (!termo) {
-    //         termo = "";
-    //     }
+        if (!termo) {
+            termo = "";
+        }
 
-    //     if (req.method === "GET") {
-    //         const professor = new Professor();
-    //         professor.buscar(termo).then((listaa) => {
-    //             res.json({
-    //                 status: true,
-    //                 listaa
-    //             });
-    //         }).catch((erro) => {
-    //             res.json({
-    //                 status: false,
-    //                 mensagem: "Não foi possível encontrar professores: " + erro.message
-    //             });
-    //         });
-    //     } else {
-    //         res.status(400).json({
-    //             status: false,
-    //             mensagem: "Por favor, utilize o método GET para consultar professores!"
-    //         });
-    //     }
-    // }
+        if (req.method === "GET") {
+            const disciplina = new Disciplina();
+            disciplina.buscar(termo).then((listaa) => {
+                res.json({
+                    status: true,
+                    listaa
+                });
+            }).catch((erro) => {
+                res.json({
+                    status: false,
+                    mensagem: "Disciplina não encontrada: " + erro.message
+                });
+            });
+        } else {
+            res.status(400).json({
+                status: false,
+                mensagem: "Utilize o método GET para consultar as disciplina!"
+            });
+        }
+    }
 
     // excluir(req, res) {
     //     res.type('application/json');

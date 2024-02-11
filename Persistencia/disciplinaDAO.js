@@ -1,4 +1,5 @@
-import Disciplina from "../Modelo/disciplina.js";
+import Disciplina from "../Modelo/disciplina.js"
+import Professor from '../Modelo/professor.js'
 import conectar from "./conexao.js";
 
 export default class DisciplinaDAO{
@@ -28,32 +29,34 @@ export default class DisciplinaDAO{
     }
 
 
-    // async buscar(consulta) {
-    //     let sql = '';
-    //     let parametros = [];
+    async buscar(consulta) {
+        let sql = '';
+        let parametros = [];
     
-    //     if (!isNaN(parseInt(consulta))) {
-    //         sql = 'SELECT * FROM professor WHERE codigo = ?';
-    //         parametros = [consulta];
-    //     } else {
-    //         if (!consulta) {
-    //             consulta = '';
-    //         }
-    //         sql = 'SELECT * FROM professor WHERE nome like ?';
-    //         parametros = ['%' + consulta + '%'];
-    //     }
+        if (!isNaN(parseInt(consulta))) {
+            sql = 'SELECT d.codigo, d.nome_disciplina, d.inicio, d.termino, d.codigo_professor, p.nome, p.email, p.telefone FROM disciplina d INNER JOIN professor p ON d.codigo_professor = p.codigo WHERE d.codigo = ? ORDER BY d.codigo';
+            parametros = [consulta];
+        } else {
+            if (!consulta) {
+                consulta = '';
+            }
+            sql = 'SELECT d.codigo, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, p.telefone FROM disciplina d INNER JOIN professor p ON d.codigo_professor = p.codigo WHERE d.nome_disciplina like ? ORDER BY d.nome_disciplina';
+            parametros = ['%'+consulta +'%'];
+        }
     
-    //     const conexao = await conectar();
-    //     const [registros] = await conexao.execute(sql, parametros);
-    //     let listaProfessores = [];
+        const conexao = await conectar();
+        const [disciplinas] = await conexao.execute(sql, parametros);
+        let listaDisciplina = [];
     
-    //     for (const registro of registros) {
-    //         const professor = new Professor(registro.codigo, registro.nome, registro.email, registro.telefone);
-    //         listaProfessores.push(professor);
-    //     }
-    
-    //     return listaProfessores
-    // }
+        for (const disc of disciplinas) {
+            const professor = new Professor(disc.codigo_professor, disc.nome, disc.email, disc.telefone)
+            const disciplina = new Disciplina(disc.codigo, disc.nome_disciplina, disc.inicio, disc.termino, professor);
+            listaDisciplina.push(disciplina);
+        }
+        
+        return listaDisciplina
+        
+    }
 
     // async excluir(professor){
     //     if (professor instanceof Professor){

@@ -5,14 +5,14 @@ export default class Disciplina{
     #nome_disciplina
     #inicio
     #termino
-    #codigo_professor
+    #professor
     
-    constructor(codigo = 0,nome_disciplina,inicio,termino,codigo_professor){
+    constructor(codigo = 0,nome_disciplina,inicio,termino,professor={}){
         this.#codigo = codigo
         this.#nome_disciplina = nome_disciplina
         this.#inicio = inicio
         this.#termino = termino
-        this.#codigo_professor = codigo_professor
+        this.#professor = professor
     }
 
     get codigo(){
@@ -47,12 +47,12 @@ export default class Disciplina{
         this.#termino = t
     }
 
-    get codigo_professor(){
-        return this.#codigo_professor
+    get professor(){
+        return this.#professor
     }
     
-    set codigo_professor(cod){
-        this.#codigo_professor = cod
+    set professor(cod){
+        this.#professor = cod
     }
 
     toJSON(){
@@ -61,7 +61,7 @@ export default class Disciplina{
             nome_disciplina: this.#nome_disciplina,
             inicio: this.#inicio,
             termino: this.#termino,
-            codigo_professor : this.#codigo_professor
+            professor: this.#professor
         }
     }
 
@@ -74,5 +74,10 @@ export default class Disciplina{
         const disDAO = new DisciplinaDAO()
         await disDAO.atualizar(this)
     }
+
+    async buscar(termo){
+        const disDAO = new DisciplinaDAO()
+        return await disDAO.buscar(termo)
+     }
 
 }
