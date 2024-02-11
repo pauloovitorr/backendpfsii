@@ -70,4 +70,9 @@ export default class Disciplina{
         disDAO.gravar(this)
     }
 
+    async atualizar(){
+        const disDAO = new DisciplinaDAO()
+        disDAO.atualizar(this)
+    }
+
 }

@@ -15,15 +15,23 @@ export default class DisciplinaDAO{
         }
     }
 
-    // async atualizar(professor){
-    //     if(professor instanceof Professor){
-    //         const sql = 'UPDATE professor SET nome = ?, email = ?, telefone = ? WHERE codigo = ?'
-    //         const parametros = [professor.nome, professor.email, professor.telefone, professor.codigo]
-    //         const conexao = await conectar()
-    //         await conexao.execute(sql, parametros)
-    //         global.poolConexoes.releaseConnection(conexao)
-    //     }
-    // }
+    async atualizar(disciplina){
+        if(disciplina instanceof Disciplina){
+            const sql = 'UPDATE disciplina SET nome_disciplina = ?, inicio = ?, termino = ?, codigo_professor = ? WHERE codigo = ?'
+            const parametros = [disciplina.nome_disciplina, disciplina.inicio, disciplina.termino, disciplina.codigo_professor, disciplina.codigo]
+            
+            try{
+                const conexao = await conectar()
+                await conexao.execute(sql, parametros)
+                global.poolConexoes.releaseConnection(conexao)
+            }
+            catch (erro){
+               throw erro
+            }
+        }
+    }
+
+
     // async buscar(consulta) {
     //     let sql = '';
     //     let parametros = [];

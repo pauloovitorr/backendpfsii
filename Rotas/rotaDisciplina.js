@@ -6,6 +6,7 @@ const disciplinaCtrl = new DisciplinaCtrl()
 
 rota_disciplina
 .post('/', disciplinaCtrl.gravar)
+.put('/', disciplinaCtrl.atualizar)
 
 
 export default rota_disciplina
