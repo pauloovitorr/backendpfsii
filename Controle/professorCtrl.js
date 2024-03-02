@@ -89,6 +89,7 @@ export default class ProfessorCtrl {
             });
         }
     }
+    
 
     excluir(req, res) {
         res.type('application/json');
