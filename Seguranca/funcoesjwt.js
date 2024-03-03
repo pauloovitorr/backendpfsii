@@ -10,4 +10,4 @@ export function assinar(usuario){
 
 export function verficarAssinatura(token){
     return jwt.verify(token,process.env.SEGREDO )
-} 
+}  

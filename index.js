@@ -32,8 +32,6 @@ app.use(session({
 
 
 app.use('/login',rotaLogin);
-// app.use('/categoria',verificarAcesso,rotaCategoria); 
-// app.use('/produto',verificarAcesso,rotaProduto);
 app.use('/professor',verificarAcesso, rota_professor)
 app.use('/disciplina',verificarAcesso, rota_disciplina)
 
