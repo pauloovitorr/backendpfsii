@@ -1,9 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import rotaCategoria from './Rotas/rotaCategoria.js';
-import rotaProduto from './Rotas/rotaProduto.js';
 import rota_professor from './Rotas/rotaProfessor.js';
 import rota_disciplina from './Rotas/rotaDisciplina.js';
+import rota_aluno from './Rotas/rotaAluno.js'
 import rotaLogin from './Rotas/rotaLogin.js';
 import { verificarAcesso } from './Seguranca/Autenticacao.js';
 import dotenv from 'dotenv';
@@ -31,9 +30,13 @@ app.use(session({
 }))
 
 
+// verificarAcesso
+// verificarAcesso
+
 app.use('/login',rotaLogin);
-app.use('/professor',verificarAcesso, rota_professor)
-app.use('/disciplina',verificarAcesso, rota_disciplina)
+app.use('/professor', rota_professor)
+app.use('/disciplina', rota_disciplina)
+app.use('/aluno', rota_aluno)
 
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
