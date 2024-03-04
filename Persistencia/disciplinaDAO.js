@@ -51,11 +51,14 @@ export default class DisciplinaDAO{
     
         for (const disc of disciplinas) {
             
-            const professor = new Professor(disc.nome, disc.email, disc.telefone)
+            const professor = new Professor(disc.codigo,disc.nome, disc.email, disc.telefone)
             const disciplina = new Disciplina(disc.codigo, disc.nome_disciplina, disc.inicio, disc.termino, professor);
             listaDisciplina.push(disciplina);
+
+        
         }
         
+       
         return listaDisciplina
         
     }
