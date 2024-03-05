@@ -32,3 +32,8 @@ CREATE TABLE disciplina(
     CONSTRAINT fk_professor FOREIGN KEY(codigo_professor) REFERENCES professor(codigo)
     
 )
+
+SELECT a.nome, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
+INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
+INNER JOIN professor p ON p.codigo = d.codigo_professor ORDER BY a.nome DESC
