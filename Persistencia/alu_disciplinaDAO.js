@@ -1,4 +1,6 @@
 import Aluno_Disciplina from "../Modelo/alu_disciplina.js";
+import Aluno from '../Modelo/aluno.js'
+import Disciplina from '../Modelo/disciplina.js'
 import conectar from "./conexao.js";
 
 export default class Aluno_DisciplinaDAO{
@@ -56,14 +58,16 @@ export default class Aluno_DisciplinaDAO{
         const [registros] = await conexao.execute(sql, parametros);
 
         
-        // let listaAlunos = [];
+        let listaAlunos_disciplina = [];
     
-        // for (const registro of registros) {
-        //     const aluno = new Aluno(registro.codigo, registro.nome, registro.cpf, registro.telefone);
-        //     listaAlunos.push(aluno);
-        // }
-    
-        // return listaAlunos
+        for (const registro of registros) {
+            let disciplina = new Disciplina(registro.codigo_disciplina, registro.nome_disciplina, registro.inicio, registro.termino)
+            listaAlunos_disciplina.push(disciplina)
+        }
+        
+        // const aluno_disciplina = new Aluno(registro.codigo_aluno, registro.nome_aluno, registro.cpf, registro.telefone)
+        
+        return listaAlunos_disciplina
     }
 
     async excluir(alu_disciplina){

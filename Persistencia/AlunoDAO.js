@@ -35,7 +35,7 @@ export default class AlunoDAO{
             if (!consulta) {
                 consulta = '';
             }
-            sql = 'SELECT * FROM aluno WHERE nome like ?';
+            sql = 'SELECT * FROM aluno WHERE nome_aluno like ?';
             parametros = ['%' + consulta + '%'];
         }
     
@@ -44,7 +44,7 @@ export default class AlunoDAO{
         let listaAlunos = [];
     
         for (const registro of registros) {
-            const aluno = new Aluno(registro.codigo, registro.nome, registro.cpf, registro.telefone);
+            const aluno = new Aluno(registro.codigo, registro.nome_aluno, registro.cpf, registro.telefone);
             listaAlunos.push(aluno);
         }
     

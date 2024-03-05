@@ -5,12 +5,14 @@ export default class Aluno{
     #nome
     #cpf
     #telefone
+    #lista_disciplina = {}
 
-    constructor(codigo = 0,nome,cpf,telefone){
+    constructor(codigo = 0,nome,cpf,telefone, lista){
         this.#codigo = codigo
         this.#nome = nome
         this.#cpf = cpf
         this.#telefone = telefone
+        this.#lista_disciplina = lista
     }
 
     get codigo(){
@@ -45,12 +47,21 @@ export default class Aluno{
         this.#telefone = t
     }
 
+    get lista_disciplina(){
+        return this.#lista_disciplina
+    }
+
+    set lista_disciplina(lista){
+        this.#lista_disciplina = lista
+    }
+
     toJSON(){
         return{
             codigo: this.#codigo,
             nome: this.#nome,
             cpf: this.#cpf,
-            telefone: this.#telefone
+            telefone: this.#telefone,
+            lista_disciplina:this.#lista_disciplina
         }
     }
 
