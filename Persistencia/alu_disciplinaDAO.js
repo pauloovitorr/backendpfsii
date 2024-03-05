@@ -36,24 +36,26 @@ export default class Aluno_DisciplinaDAO{
         let parametros = [];
     
         if (!isNaN(parseInt(consulta))) {
-            sql = `SELECT a.nome, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+            sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
             INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
             INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
-            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.codigo = ? ORDER BY a.nome DESC`;
+            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.codigo = ? ORDER BY a.nome_aluno DESC`;
             parametros = [consulta];
         } else {
             if (!consulta) {
                 consulta = '';
             }
-            sql = `SELECT a.nome, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+            sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
             INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
             INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
-            INNER JOIN professor p ON p.codigo = d.codigo_professor ORDER BY a.nome DESC`;
+            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.nome_aluno LIKE  ? ORDER BY a.nome_aluno DESC`;
             parametros = ['%' + consulta + '%'];
         }
-    
+           
         const conexao = await conectar();
         const [registros] = await conexao.execute(sql, parametros);
+
+        
         // let listaAlunos = [];
     
         // for (const registro of registros) {

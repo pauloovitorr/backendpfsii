@@ -6,7 +6,7 @@ export default class AlunoCtrl {
         if (req.method === 'POST' && req.is('application/json')) {
 
             const dados = req.body
-            const nome = dados.nome
+            const nome = dados.nome_aluno
             const cpf = dados.cpf
             const telefone = dados.telefone
 
@@ -36,7 +36,7 @@ export default class AlunoCtrl {
         if (req.method === 'PUT' && req.is('application/json')) {
             const dados = req.body
             const codigo = dados.codigo
-            const nome = dados.nome
+            const nome = dados.nome_aluno
             const cpf = dados.cpf
             const telefone = dados.telefone
 
