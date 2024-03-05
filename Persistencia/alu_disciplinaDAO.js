@@ -5,9 +5,16 @@ export default class Aluno_DisciplinaDAO{
     async gravar(alu_disciplina){
         if(alu_disciplina instanceof Aluno_Disciplina){
             const sql = 'INSERT INTO aluno_disciplina (codigo_aluno,codigo_disciplina) VALUES (?,?)'
-            const parametros = [alu_disciplina.codigo_aluno , alu_disciplina.codigo_disciplina ]
             const conexao = await conectar()
-            const  retorno = await conexao.execute(sql, parametros)
+
+            for(let disciplina of alu_disciplina.codigo_disciplina){
+
+                const parametros = [alu_disciplina.codigo_aluno , disciplina.codigo]
+                const  retorno = await conexao.execute(sql, parametros)
+            }
+
+            
+            
             
             //alu_disciplina.codigo = retorno[0].insertId
             

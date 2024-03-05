@@ -8,11 +8,11 @@ export default class Aluno_DiscCtrl {
 
             const dados = req.body
             const codigo_aluno = dados.codigo_aluno
-            const codigo_disciplina = dados.codigo_disciplina
+            const lista_disciplina = dados.disciplinas
             
 
-            if (codigo_aluno && codigo_disciplina) {
-                const alu_disciplina = new Aluno_Disciplina (codigo_aluno, codigo_disciplina)
+            if (codigo_aluno && lista_disciplina) {
+                const alu_disciplina = new Aluno_Disciplina (codigo_aluno, lista_disciplina)
                 alu_disciplina.gravar()
                     .then(() => {
                         res.status(200).json({
