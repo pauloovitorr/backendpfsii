@@ -29,26 +29,32 @@ export default class Aluno_DisciplinaDAO{
         let parametros = [];
     
         if (!isNaN(parseInt(consulta))) {
-            sql = 'SELECT * FROM alu_disciplina WHERE codigo = ?';
+            sql = `SELECT a.nome, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+            INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
+            INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
+            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.codigo = ? ORDER BY a.nome DESC`;
             parametros = [consulta];
         } else {
             if (!consulta) {
                 consulta = '';
             }
-            sql = 'SELECT * FROM aluno WHERE nome like ?';
+            sql = `SELECT a.nome, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+            INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
+            INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
+            INNER JOIN professor p ON p.codigo = d.codigo_professor ORDER BY a.nome DESC`;
             parametros = ['%' + consulta + '%'];
         }
     
         const conexao = await conectar();
         const [registros] = await conexao.execute(sql, parametros);
-        let listaAlunos = [];
+        // let listaAlunos = [];
     
-        for (const registro of registros) {
-            const aluno = new Aluno(registro.codigo, registro.nome, registro.cpf, registro.telefone);
-            listaAlunos.push(aluno);
-        }
+        // for (const registro of registros) {
+        //     const aluno = new Aluno(registro.codigo, registro.nome, registro.cpf, registro.telefone);
+        //     listaAlunos.push(aluno);
+        // }
     
-        return listaAlunos
+        // return listaAlunos
     }
 
     async excluir(alu_disciplina){

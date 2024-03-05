@@ -68,8 +68,8 @@ export default class Aluno_DiscCtrl {
         }
 
         if (req.method === "GET") {
-            const aluno = new Aluno();
-            aluno.buscar(termo).then((listaa) => {
+            const alu_disciplina = new Aluno_Disciplina()
+            alu_disciplina.buscar(termo).then((listaa) => {
                 res.json({
                     status: true,
                     listaa
@@ -125,5 +125,5 @@ export default class Aluno_DiscCtrl {
         }
    }
 
-   
+
 }

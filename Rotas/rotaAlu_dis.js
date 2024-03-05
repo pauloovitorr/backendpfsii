@@ -9,8 +9,8 @@ rota_aluno_dis
 
 .post('/', aluno_dis.gravar)
 .put('/', aluno_dis.atualizar)
-// .get('/', aluno_dis.buscar)
-// .get('/:termo', aluno_dis.buscar)
+.get('/', aluno_dis.buscar)
+.get('/:termo', aluno_dis.buscar)
 .delete('/', aluno_dis.excluir)
 
 export default rota_aluno_dis
