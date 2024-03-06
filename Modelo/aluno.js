@@ -5,9 +5,9 @@ export default class Aluno{
     #nome
     #cpf
     #telefone
-    #lista_disciplina = {}
+    #lista_disciplina
 
-    constructor(codigo = 0,nome,cpf,telefone, lista){
+    constructor(codigo = 0,nome,cpf,telefone, lista={}){
         this.#codigo = codigo
         this.#nome = nome
         this.#cpf = cpf

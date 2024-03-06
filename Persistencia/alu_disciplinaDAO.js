@@ -1,5 +1,6 @@
 import Aluno_Disciplina from "../Modelo/alu_disciplina.js";
 import Aluno from '../Modelo/aluno.js'
+import Professor from '../Modelo/professor.js'
 import Disciplina from '../Modelo/disciplina.js'
 import conectar from "./conexao.js";
 
@@ -38,7 +39,7 @@ export default class Aluno_DisciplinaDAO{
         let parametros = [];
     
         if (!isNaN(parseInt(consulta))) {
-            sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+            sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.codigo, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
             INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
             INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
             INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.codigo = ? ORDER BY a.nome_aluno DESC`;
@@ -47,7 +48,7 @@ export default class Aluno_DisciplinaDAO{
             if (!consulta) {
                 consulta = '';
             }
-            sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
+            sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.codigo, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
             INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
             INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
             INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.nome_aluno LIKE  ? ORDER BY a.nome_aluno DESC`;
@@ -55,17 +56,20 @@ export default class Aluno_DisciplinaDAO{
         }
            
         const conexao = await conectar();
-        const [registros] = await conexao.execute(sql, parametros);
+        const [registro] = await conexao.execute(sql, parametros);
 
         
         let listaAlunos_disciplina = [];
     
-        for (const registro of registros) {
-            let disciplina = new Disciplina(registro.codigo_disciplina, registro.nome_disciplina, registro.inicio, registro.termino)
-            listaAlunos_disciplina.push(disciplina)
+        for (const dado of registro) {
+            let professor = new Professor(dado.codigo, dado.nome, dado.email, dado.telefone)
+            let disciplinas = new Disciplina(dado.codigo_disciplina, dado.nome_disciplina, dado.inicio, dado.termino, professor)
+            const aluno_disciplina = new Aluno(dado.codigo_aluno, dado.nome_aluno, dado.cpf, dado.telefone, disciplinas)
+            listaAlunos_disciplina.push(aluno_disciplina)
+
+            
+
         }
-        
-        // const aluno_disciplina = new Aluno(registro.codigo_aluno, registro.nome_aluno, registro.cpf, registro.telefone)
         
         return listaAlunos_disciplina
     }

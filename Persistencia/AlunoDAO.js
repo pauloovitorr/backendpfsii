@@ -4,7 +4,7 @@ import conectar from "./conexao.js";
 export default class AlunoDAO{
     async gravar(aluno){
         if(aluno instanceof Aluno){
-            const sql = 'INSERT INTO aluno (nome,cpf,telefone) VALUES (?,?,?)'
+            const sql = 'INSERT INTO aluno (nome_aluno,cpf,telefone) VALUES (?,?,?)'
             const parametros = [aluno.nome, aluno.cpf, aluno.telefone]
             const conexao = await conectar()
             const  retorno = await conexao.execute(sql, parametros)
@@ -17,7 +17,7 @@ export default class AlunoDAO{
 
     async atualizar(aluno){
         if(aluno instanceof Aluno){
-            const sql = 'UPDATE aluno SET nome = ?, cpf = ?, telefone = ? WHERE codigo = ?'
+            const sql = 'UPDATE aluno SET nome_aluno = ?, cpf = ?, telefone = ? WHERE codigo = ?'
             const parametros = [aluno.nome, aluno.cpf, aluno.telefone, aluno.codigo]
             const conexao = await conectar()
             await conexao.execute(sql, parametros)

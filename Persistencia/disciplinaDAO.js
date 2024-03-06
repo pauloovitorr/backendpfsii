@@ -57,7 +57,6 @@ export default class DisciplinaDAO{
 
         
         }
-        
        
         return listaDisciplina
         
