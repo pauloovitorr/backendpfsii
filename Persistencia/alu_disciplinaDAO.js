@@ -60,18 +60,21 @@ export default class Aluno_DisciplinaDAO{
 
         
         let listaAlunos_disciplina = [];
+        let verifica = []
+        let lista_alunos = []
     
         for (const dado of registro) {
-            let professor = new Professor(dado.codigo, dado.nome, dado.email, dado.telefone)
-            let disciplinas = new Disciplina(dado.codigo_disciplina, dado.nome_disciplina, dado.inicio, dado.termino, professor)
-            const aluno_disciplina = new Aluno(dado.codigo_aluno, dado.nome_aluno, dado.cpf, dado.telefone, disciplinas)
-            listaAlunos_disciplina.push(aluno_disciplina)
-
+           // let professor = new Professor(dado.codigo, dado.nome, dado.email, dado.telefone)
+            let disciplinas = new Disciplina(dado.codigo_disciplina, dado.nome_disciplina, dado.inicio, dado.termino, dado.codigo)
             
+            listaAlunos_disciplina.push(disciplinas)
+            
+                const aluno_disciplina = new Aluno(dado.codigo_aluno, dado.nome_aluno, dado.cpf, dado.telefone, listaAlunos_disciplina)
+                lista_alunos.push(aluno_disciplina)
+                listaAlunos_disciplina = []
 
         }
-        
-        return listaAlunos_disciplina
+        return lista_alunos
     }
 
     async excluir(alu_disciplina){
