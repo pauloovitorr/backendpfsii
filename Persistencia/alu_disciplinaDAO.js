@@ -103,9 +103,9 @@ export default class Aluno_DisciplinaDAO{
 
     async excluir(alu_disciplina){
         if (alu_disciplina instanceof Aluno_Disciplina){
-            const sql = "DELETE FROM aluno_disciplina WHERE codigo_aluno = ?"
+            const sql = "DELETE FROM aluno_disciplina WHERE codigo_aluno = ? AND codigo_disciplina = ?"
 
-            const parametros = [alu_disciplina.codigo_aluno]
+            const parametros = [alu_disciplina.codigo_aluno, alu_disciplina.codigo_disciplina]
             const conexao = await conectar()
             await conexao.execute(sql,parametros)
             global.poolConexoes.releaseConnection(conexao)

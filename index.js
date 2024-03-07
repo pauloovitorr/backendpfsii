@@ -32,10 +32,10 @@ app.use(session({
 
 
 // verificarAcesso
-// verificarAcesso
+// 
 
 app.use('/login',rotaLogin);
-app.use('/professor', rota_professor)
+app.use('/professor',verificarAcesso, rota_professor)
 app.use('/disciplina', rota_disciplina)
 app.use('/aluno', rota_aluno)
 app.use('/vincular', rota_aluno_dis)
@@ -43,3 +43,4 @@ app.use('/vincular', rota_aluno_dis)
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
 })
+

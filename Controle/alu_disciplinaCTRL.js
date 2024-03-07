@@ -93,10 +93,11 @@ export default class Aluno_DiscCtrl {
         res.type('application/json');
         if (req.method === 'DELETE' && req.is('application/json')) {
             const dados = req.body;
-            const codigo = dados.codigo_aluno;
+            const codigo_aluno = dados.codigo_aluno;
+            const codigo_disciplina = dados.codigo_disciplina
 
-            if (codigo) {
-                const aluno = new Aluno_Disciplina(codigo);
+            if (codigo_aluno && codigo_disciplina) {
+                const aluno = new Aluno_Disciplina(codigo_aluno,codigo_disciplina);
                 aluno.excluir().then(() => {
                     res.status(200).json({
                         "status": true,
