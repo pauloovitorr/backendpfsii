@@ -97,7 +97,8 @@ export default class Aluno_DisciplinaDAO{
         function buscarElementosPorCodigo(array_dados, codigoDesejado) {
             return array_dados.filter(elemento => elemento.codigo_aluno === codigoDesejado);
           }
-       
+
+          
     }
 
     async excluir(alu_disciplina){
