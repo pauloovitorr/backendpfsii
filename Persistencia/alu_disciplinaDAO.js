@@ -60,21 +60,44 @@ export default class Aluno_DisciplinaDAO{
 
         
         let listaAlunos_disciplina = [];
-        let verifica = []
-        let lista_alunos = []
+        let cod = []
+        let aluno_com_dis = []
+        
     
         for (const dado of registro) {
-           // let professor = new Professor(dado.codigo, dado.nome, dado.email, dado.telefone)
-            let disciplinas = new Disciplina(dado.codigo_disciplina, dado.nome_disciplina, dado.inicio, dado.termino, dado.codigo)
-            
-            listaAlunos_disciplina.push(disciplinas)
-            
-                const aluno_disciplina = new Aluno(dado.codigo_aluno, dado.nome_aluno, dado.cpf, dado.telefone, listaAlunos_disciplina)
-                lista_alunos.push(aluno_disciplina)
-                listaAlunos_disciplina = []
-
+            listaAlunos_disciplina.push(dado)
         }
-        return lista_alunos
+
+        let Disciplinas_aluno = []
+
+        for(let i  in listaAlunos_disciplina){
+
+            if(!cod.includes(listaAlunos_disciplina[i].codigo_aluno)){
+                let dados = buscarElementosPorCodigo(listaAlunos_disciplina, listaAlunos_disciplina[i].codigo_aluno)
+                
+                for(let dado of dados ){
+                     let professor = new Professor(dado.codigo, dado.nome, dado.email, dado.telefone)
+                     let disciplinas = new Disciplina(dado.codigo_disciplina, dado.nome_disciplina, dado.inicio, dado.termino, professor)
+                     Disciplinas_aluno.push(disciplinas)
+                }
+
+                const aluno_disciplina = new Aluno(dados[0].codigo_aluno, dados[0].nome_aluno, dados[0].cpf, dados[0].telefone, Disciplinas_aluno)
+                aluno_com_dis.push(aluno_disciplina)
+                dados = []
+                Disciplinas_aluno = []
+
+            }
+            cod.push(listaAlunos_disciplina[i].codigo_aluno)
+        }
+
+
+        return aluno_com_dis
+       
+
+        function buscarElementosPorCodigo(array_dados, codigoDesejado) {
+            return array_dados.filter(elemento => elemento.codigo_aluno === codigoDesejado);
+          }
+       
     }
 
     async excluir(alu_disciplina){
