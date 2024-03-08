@@ -27,8 +27,8 @@ export default class Aluno_DisciplinaDAO{
 
     async atualizar(alu_disciplina){
         if(alu_disciplina instanceof Aluno_Disciplina){
-            const sql = 'UPDATE aluno_disciplina SET codigo_aluno = ?, codigo_disciplina = ? WHERE codigo_aluno = ?'
-            const parametros = [alu_disciplina.codigo_aluno, alu_disciplina.codigo_disciplina, alu_disciplina.codigo_aluno]
+            const sql = 'UPDATE aluno_disciplina SET codigo_disciplina = ? WHERE codigo_aluno = ? AND codigo_disciplina = ? '
+            const parametros = [alu_disciplina.codigo_novo_disciplina, alu_disciplina.codigo_aluno, alu_disciplina.codigo_disciplina]
             const conexao = await conectar()
             await conexao.execute(sql, parametros)
             global.poolConexoes.releaseConnection(conexao)

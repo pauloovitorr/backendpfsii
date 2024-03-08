@@ -4,11 +4,14 @@ export default class Aluno_Disciplina{
     
     #codigo_aluno
     #codigo_disciplina
+    #codigo_novo_disciplina
+    
     
 
-    constructor(codigo_aluno,codigo_disciplina){
+    constructor(codigo_aluno,codigo_disciplina,codigo_novo_disciplina){
         this.#codigo_aluno = codigo_aluno
         this.#codigo_disciplina = codigo_disciplina
+        this.#codigo_novo_disciplina = codigo_novo_disciplina
     }
 
 
@@ -28,11 +31,20 @@ export default class Aluno_Disciplina{
         this.#codigo_disciplina = c
     }
 
+    get codigo_novo_disciplina(){
+        return this.#codigo_novo_disciplina
+    }
+ 
+    set codigo_novo_disciplina(c){
+        this.#codigo_novo_disciplina = c
+    }
+
     
     toJSON(){
         return{
             codigo_aluno: this.#codigo_aluno,
-            codigo_disciplina: this.codigo_disciplina            
+            codigo_disciplina: this.codigo_disciplina,
+            codigo_novo_disciplina: this.#codigo_novo_disciplina            
         }
     }
 

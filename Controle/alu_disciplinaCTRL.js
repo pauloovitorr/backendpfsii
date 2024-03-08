@@ -37,10 +37,11 @@ export default class Aluno_DiscCtrl {
             const dados = req.body
             const codigo_aluno = dados.codigo_aluno
             const codigo_disciplina = dados.codigo_disciplina
+            const codigo_novo_disciplina = dados.codigo_novo
 
-            if (codigo_aluno && codigo_disciplina) {
+            if (codigo_aluno && codigo_disciplina && codigo_novo_disciplina) {
 
-                const alu_disciplina = new Aluno_Disciplina(codigo_aluno,codigo_disciplina)
+                const alu_disciplina = new Aluno_Disciplina(codigo_aluno,codigo_disciplina, codigo_novo_disciplina)
                 alu_disciplina.atualizar()
                     .then(() => {
                         res.status(200).json({
