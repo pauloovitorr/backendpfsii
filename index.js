@@ -31,9 +31,6 @@ app.use(session({
 }))
 
 
-// verificarAcesso
-// 
-
 app.use('/login',rotaLogin);
 app.use('/professor',verificarAcesso, rota_professor)
 app.use('/disciplina', rota_disciplina)
