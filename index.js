@@ -32,9 +32,9 @@ app.use(session({
 
 app.use('/login',rotaLogin);
 app.use('/professor',verificarAcesso, rota_professor)
-app.use('/disciplina', rota_disciplina)
-app.use('/aluno', rota_aluno)
-app.use('/vincular', rota_aluno_dis)
+app.use('/disciplina',verificarAcesso, rota_disciplina)
+app.use('/aluno',verificarAcesso, rota_aluno)
+app.use('/vincular',verificarAcesso, rota_aluno_dis)
 
 
 app.listen(porta, host, ()=>{
