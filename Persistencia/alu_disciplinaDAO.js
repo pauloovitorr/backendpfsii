@@ -15,10 +15,6 @@ export default class Aluno_DisciplinaDAO{
                 const parametros = [alu_disciplina.codigo_aluno , disciplina.codigo]
                 const  retorno = await conexao.execute(sql, parametros)
             }
-
-            
-            
-            
             //alu_disciplina.codigo = retorno[0].insertId
             
             global.poolConexoes.releaseConnection(conexao);
@@ -89,15 +85,11 @@ export default class Aluno_DisciplinaDAO{
             }
             cod.push(listaAlunos_disciplina[i].codigo_aluno)
         }
-
-
-        return aluno_com_dis
-       
-
         function buscarElementosPorCodigo(array_dados, codigoDesejado) {
             return array_dados.filter(elemento => elemento.codigo_aluno === codigoDesejado);
           }
 
+        return aluno_com_dis
           
     }
 
