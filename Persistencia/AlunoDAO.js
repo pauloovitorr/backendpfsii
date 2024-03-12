@@ -53,11 +53,29 @@ export default class AlunoDAO{
 
     async excluir(aluno){
         if (aluno instanceof Aluno){
-            const sql = "DELETE FROM aluno WHERE codigo = ?"
 
-            const parametros = [aluno.codigo]
             const conexao = await conectar()
-            await conexao.execute(sql,parametros)
+            await conexao.beginTransaction()
+
+            try{
+                const sql = 'DELETE FROM aluno_disciplina WHERE codigo_aluno = ?'
+                const parametros = [aluno.codigo]
+
+                await conexao.execute(sql,parametros)
+
+                const sql2 = "DELETE FROM aluno WHERE codigo = ?"
+
+                const parametros2 = [aluno.codigo]
+
+                await conexao.execute(sql2,parametros2)
+                
+
+                await conexao.commit()
+            }
+            catch(err){
+                await conexao.rollback()
+            }
+            
             global.poolConexoes.releaseConnection(conexao)
         }
     }

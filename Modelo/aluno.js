@@ -76,12 +76,12 @@ export default class Aluno{
     }
 
     async buscar(parametro){
-        const proDAO = new AlunoDAO
+        const proDAO = new AlunoDAO()
         return await proDAO.buscar(parametro)
     }
 
     async excluir(){
-        const proDAO = new AlunoDAO
+        const proDAO = new AlunoDAO()
         await proDAO.excluir(this)
     }
 }
