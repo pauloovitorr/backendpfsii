@@ -11,7 +11,7 @@ import session from 'express-session';
 
 
 const host='0.0.0.0';
-const porta='3000';
+const porta='3001';
 
 dotenv.config()
 
@@ -29,9 +29,10 @@ app.use(session({
     maxAge: 1000 * 60 * 6
 }))
 
+//verificarAcesso,
 
 app.use('/login',rotaLogin);
-app.use('/professor',verificarAcesso, rota_professor)
+app.use('/professor', rota_professor)
 app.use('/disciplina',verificarAcesso, rota_disciplina)
 app.use('/aluno',verificarAcesso, rota_aluno)
 app.use('/vincular',verificarAcesso, rota_aluno_dis)

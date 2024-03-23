@@ -10,6 +10,8 @@ export default class ProfessorCtrl {
             const email = dados.email
             const telefone = dados.telefone
 
+            
+
             if (nome && email && telefone) {
                 const professor = new Professor(0, nome, email, telefone)
                 professor.gravar()
