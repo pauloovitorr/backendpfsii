@@ -2,6 +2,7 @@ import Professor from "../Modelo/professor.js";
 
 export default class ProfessorCtrl {
     gravar(req, res) {
+        console.log('tentou gravar')
         res.type('application/json')
         if (req.method === 'POST' && req.is('application/json')) {
 
@@ -10,13 +11,11 @@ export default class ProfessorCtrl {
             const email = dados.email
             const telefone = dados.telefone
 
-            
-
             if (nome && email && telefone) {
                 const professor = new Professor(0, nome, email, telefone)
                 professor.gravar()
                     .then(() => {
-                        res.status(200).json({
+                       res.status(200).json({
                             "status": true,
                             "codigoGerado": professor.codigo,
                             "mensagem": "Professor cadastrado com sucesso!"
@@ -64,6 +63,7 @@ export default class ProfessorCtrl {
     }
 
     buscar(req, res) {
+        console.log('buscou os dados')
         res.type('application/json');
         let termo = req.params.termo;
 
