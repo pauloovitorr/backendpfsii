@@ -63,7 +63,8 @@ export default class ProfessorCtrl {
     }
 
     buscar(req, res) {
-        console.log('buscou os dados')
+        
+        console.log('buscou dados')
         res.type('application/json');
         let termo = req.params.termo;
 

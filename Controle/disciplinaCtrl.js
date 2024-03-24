@@ -5,6 +5,8 @@ export default class DisciplinaCtrl {
         res.type('application/json')
         if (req.method === 'POST' && req.is('application/json')) {
 
+            console.log('Tentou cadastrar')
+            
             const dados = req.body
             const nome_disciplina = dados.nome_disciplina
             const inicio = dados.inicio
