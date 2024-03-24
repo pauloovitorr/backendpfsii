@@ -63,8 +63,8 @@ export default class ProfessorCtrl {
     }
 
     buscar(req, res) {
+        console.log('GET')
         
-        console.log('buscou dados')
         res.type('application/json');
         let termo = req.params.termo;
 
@@ -75,6 +75,7 @@ export default class ProfessorCtrl {
         if (req.method === "GET") {
             const professor = new Professor();
             professor.buscar(termo).then((listaa) => {
+                console.log('PEGOU OS DADOS')
                 res.json({
                     status: true,
                     listaa

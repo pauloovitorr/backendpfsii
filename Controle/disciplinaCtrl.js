@@ -5,7 +5,7 @@ export default class DisciplinaCtrl {
         res.type('application/json')
         if (req.method === 'POST' && req.is('application/json')) {
 
-            console.log('Tentou cadastrar')
+            console.log('POST')
             
             const dados = req.body
             const nome_disciplina = dados.nome_disciplina
@@ -17,7 +17,9 @@ export default class DisciplinaCtrl {
                 const disciplina = new Disciplina(0,nome_disciplina,inicio,termino, codigo_professor)
                 
                 disciplina.gravar()
+                
                     .then(() => {
+                        console.log('Cadastrou')
                         res.status(200).json({
                             "status": true,
                             "codigoGerado": disciplina.codigo,
@@ -95,7 +97,10 @@ export default class DisciplinaCtrl {
         }
     }
 
+    
+    
     excluir(req, res) {
+        console.log('Solicitou excluir')
         res.type('application/json');
         if (req.method === 'DELETE' && req.is('application/json')) {
             const dados = req.body;
@@ -104,6 +109,7 @@ export default class DisciplinaCtrl {
             if (codigo) {
                 const disciplina = new Disciplina(codigo);
                 disciplina.excluir().then(() => {
+                    console.log('Excluido')
                     res.status(200).json({
                         "status": true,
                         "mensagem": "Disciplina excluída com sucesso!"

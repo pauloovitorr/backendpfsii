@@ -10,7 +10,7 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 
 const host='0.0.0.0';
-const porta='3001';
+const porta='4000';
 
 dotenv.config()
 
@@ -31,6 +31,7 @@ app.use(session({
 //verificarAcesso,
 //verificarAcesso,
 
+
 app.use('/login',rotaLogin);
 app.use('/professor', rota_professor)
 app.use('/disciplina', rota_disciplina)
@@ -40,4 +41,3 @@ app.use('/vincular',verificarAcesso, rota_aluno_dis)
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
 })
-
