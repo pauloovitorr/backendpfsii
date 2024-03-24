@@ -27,6 +27,7 @@ export default class DisciplinaDAO{
             global.poolConexoes.releaseConnection(conexao)
 
         }
+
     }
 
 
@@ -60,12 +61,12 @@ export default class DisciplinaDAO{
         
     }
 
+
     async excluir(disciplina){
         if (disciplina instanceof Disciplina){
             const sql = "DELETE FROM disciplina WHERE codigo = ?"
 
             const parametros = [disciplina.codigo]
-
             
             const conexao = await conectar()
             await conexao.execute(sql,parametros)

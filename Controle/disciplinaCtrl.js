@@ -37,7 +37,10 @@ export default class DisciplinaCtrl {
         }
     }
 
+
     atualizar(req, res) {
+
+        console.log('PUT')
         res.type('application/json')
         if (req.method === 'PUT' && req.is('application/json')) {
             const dados = req.body
@@ -47,11 +50,13 @@ export default class DisciplinaCtrl {
             const termino = dados.termino
             const codigo_professor = dados.codigo_professor
 
+
             if (codigo && nome_disciplina && inicio && termino && codigo_professor) {
 
                 const disciplina = new Disciplina(codigo,nome_disciplina,inicio,termino,codigo_professor)
                 disciplina.atualizar()
                     .then(() => {
+                        console.log('Atualizado com sucesso')
                         res.status(200).json({
                             "status": true,
                             "mensagem": "disciplina atualizada com sucesso!"
@@ -105,6 +110,8 @@ export default class DisciplinaCtrl {
         if (req.method === 'DELETE' && req.is('application/json')) {
             const dados = req.body;
             const codigo = dados.codigo;
+
+            console.log(codigo)
 
             if (codigo) {
                 const disciplina = new Disciplina(codigo);

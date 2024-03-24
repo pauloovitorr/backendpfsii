@@ -33,6 +33,8 @@ export default class ProfessorCtrl {
     }
 
     atualizar(req, res) {
+
+        console.log('PUT professor')
         res.type('application/json')
         if (req.method === 'PUT' && req.is('application/json')) {
             const dados = req.body
@@ -40,6 +42,7 @@ export default class ProfessorCtrl {
             const nome = dados.nome
             const email = dados.email
             const telefone = dados.telefone
+
 
             if (codigo && nome && email && telefone) {
 
@@ -96,10 +99,14 @@ export default class ProfessorCtrl {
     
 
     excluir(req, res) {
+
+
         res.type('application/json');
         if (req.method === 'DELETE' && req.is('application/json')) {
             const dados = req.body;
             const codigo = dados.codigo;
+
+            console.log('DELETE: '. codigo)
 
             if (codigo) {
                 const professor = new Professor(codigo);

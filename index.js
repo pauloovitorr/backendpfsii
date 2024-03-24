@@ -30,7 +30,6 @@ app.use(session({
     maxAge: 1000 * 60 * 6
 }))
 
-
 //verificarAcesso,
 //verificarAcesso,
 
@@ -39,6 +38,10 @@ app.use('/professor', rota_professor)
 app.use('/disciplina', rota_disciplina)
 app.use('/aluno',verificarAcesso, rota_aluno)
 app.use('/vincular',verificarAcesso, rota_aluno_dis)
+
+
+
+
 
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
