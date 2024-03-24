@@ -41,7 +41,7 @@ export default class DisciplinaDAO{
             if (!consulta) {
                 consulta = '';
             }
-            sql = 'SELECT d.codigo, d.nome_disciplina, d.inicio, d.termino, p.nome, p.email, p.telefone FROM disciplina d INNER JOIN professor p ON d.codigo_professor = p.codigo WHERE d.nome_disciplina like ? ORDER BY d.nome_disciplina';
+            sql = 'SELECT d.codigo, d.nome_disciplina, d.inicio, d.termino, d.codigo_professor,  p.nome, p.email, p.telefone FROM disciplina d INNER JOIN professor p ON d.codigo_professor = p.codigo WHERE d.nome_disciplina like ? ORDER BY d.nome_disciplina';
             parametros = ['%'+consulta +'%'];
         }
     
@@ -51,11 +51,9 @@ export default class DisciplinaDAO{
     
         for (const disc of disciplinas) {
             
-            const professor = new Professor(disc.codigo,disc.nome, disc.email, disc.telefone)
+            const professor = new Professor(disc.codigo_professor,disc.nome, disc.email, disc.telefone)
             const disciplina = new Disciplina(disc.codigo, disc.nome_disciplina, disc.inicio, disc.termino, professor);
             listaDisciplina.push(disciplina);
-
-        
         }
        
         return listaDisciplina
