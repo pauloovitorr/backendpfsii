@@ -50,7 +50,8 @@ export default class DisciplinaCtrl {
             const termino = dados.termino
             const codigo_professor = dados.codigo_professor
 
-
+            console.log(dados)
+            
             if (codigo && nome_disciplina && inicio && termino && codigo_professor) {
 
                 const disciplina = new Disciplina(codigo,nome_disciplina,inicio,termino,codigo_professor)

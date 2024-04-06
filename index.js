@@ -40,11 +40,7 @@ app.use('/aluno',verificarAcesso, rota_aluno)
 app.use('/vincular',verificarAcesso, rota_aluno_dis)
 
 
-
-
-
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
 })
-
 
