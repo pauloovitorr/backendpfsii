@@ -15,8 +15,6 @@ const porta='4000';
 dotenv.config()
 
 
-
-
 const app = express();
 
 app.use(cors());
@@ -32,15 +30,19 @@ app.use(session({
 
 //verificarAcesso,
 //verificarAcesso,
+//verificarAcesso,
+//verificarAcesso,
 
 app.use('/login',rotaLogin);
 app.use('/professor', rota_professor)
 app.use('/disciplina', rota_disciplina)
-app.use('/aluno',verificarAcesso, rota_aluno)
-app.use('/vincular',verificarAcesso, rota_aluno_dis)
+app.use('/aluno', rota_aluno)
+app.use('/vincular', rota_aluno_dis)
 
 
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
 })
+
+
 

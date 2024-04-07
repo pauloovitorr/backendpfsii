@@ -30,6 +30,9 @@ export default class Aluno_DisciplinaDAO{
             global.poolConexoes.releaseConnection(conexao)
         }
     }
+
+
+    
     async buscar(consulta) {
         let sql = '';
         let parametros = [];

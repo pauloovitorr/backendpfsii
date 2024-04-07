@@ -7,10 +7,10 @@ export default async function conectar(){
     }
     else{
         const pool = mysql.createPool({
-            host: '129.146.68.51',
-            user: process.env.USUARIODB, 
-            password:process.env.SENHADB,  
-            database: 'backendaluno26pfsii',
+            host: 'zeus.hostsrv.org',
+            user: 'comtest_pauloovitorr', 
+            password:'csExVgO-wN9x',  
+            database: 'comtest_backendaluno26pfsii',
             waitForConnections: true,
             connectionLimit: 10,
             maxIdle: 10,
@@ -19,6 +19,20 @@ export default async function conectar(){
             enableKeepAlive: true,
             keepAliveInitialDelay: 0
           });
+
+        //   const pool = mysql.createPool({
+        //     host: '129.146.68.51',
+        //     user: process.env.USUARIODB, 
+        //     password:process.env.SENHADB,  
+        //     database: 'backendaluno26pfsii',
+        //     waitForConnections: true,
+        //     connectionLimit: 10,
+        //     maxIdle: 10,
+        //     idleTimeout: 60000, 
+        //     queueLimit: 0,
+        //     enableKeepAlive: true,
+        //     keepAliveInitialDelay: 0
+        //   });
 
           global.poolConexoes = pool;
           

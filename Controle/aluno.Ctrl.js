@@ -6,9 +6,10 @@ export default class AlunoCtrl {
         if (req.method === 'POST' && req.is('application/json')) {
 
             const dados = req.body
-            const nome = dados.nome_aluno
+            const nome = dados.nome
             const cpf = dados.cpf
             const telefone = dados.telefone
+
 
             if (nome && cpf && telefone) {
                 const aluno = new Aluno(0, nome, cpf, telefone)
