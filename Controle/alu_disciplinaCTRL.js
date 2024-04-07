@@ -11,6 +11,7 @@ export default class Aluno_DiscCtrl {
             const lista_disciplina = dados.disciplinas
             
 
+
             if (codigo_aluno && lista_disciplina) {
                 const alu_disciplina = new Aluno_Disciplina (codigo_aluno, lista_disciplina)
                 alu_disciplina.gravar()
