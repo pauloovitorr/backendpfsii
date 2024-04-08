@@ -44,7 +44,7 @@ export default class Aluno_DisciplinaDAO{
             sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.codigo, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
             INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
             INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
-            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.codigo = ? ORDER BY a.nome_aluno DESC`;
+            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.codigo = ? ORDER BY a.nome_aluno`;
             parametros = [consulta];
         } else {
             if (!consulta) {
@@ -53,7 +53,7 @@ export default class Aluno_DisciplinaDAO{
             sql = `SELECT a.nome_aluno, a.cpf, a.telefone, d.nome_disciplina, d.inicio, d.termino, p.codigo, p.nome, p.email, xl.codigo_aluno, xl.codigo_disciplina FROM aluno a 
             INNER JOIN aluno_disciplina xl ON a.codigo = xl.codigo_aluno
             INNER JOIN disciplina d ON d.codigo = xl.codigo_disciplina
-            INNER JOIN professor p ON p.codigo = d.codigo_professor WHERE a.nome_aluno LIKE  ? ORDER BY a.nome_aluno DESC`;
+            INNER JOIN professor p ON p.codigo = d.codigo_professor`;
             parametros = ['%' + consulta + '%'];
         }
            

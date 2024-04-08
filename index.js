@@ -43,6 +43,7 @@ app.use('/vincular', rota_aluno_dis)
 
 
 
+
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
 })
